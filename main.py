@@ -1,13 +1,18 @@
 import numpy as np
 import math  
 import matplotlib.pyplot as plt
-from scipy.fft import rfft, rfftfreq
+# from scipy.fft import rfft, rfftfreq
 from scipy.io.wavfile import read, write
+import sys
 
 # u is input x' = f(x, u)
-N = 44000
+
+file_name = sys.argv[1]
+print(file_name)
 width = 1
-samplerate, data = read("clean.wav")
+sample_rate, data = read(file_name)
+
+# Length of input
 N = int(data.shape[0])
 
 def odeEuler(f, x0, u):
@@ -45,8 +50,8 @@ x = odeEuler(circuit, 0.1, uClipped)
 # plt.axis([0, 0.05, -8, 8])
 # plt.show()
 
-write("clipped-ode-forwardeuler-2.wav", samplerate, x)
-print("Created clipped-ode-forwardeuler.wav from clean.wav")
+write("clipped-ode-forwardeuler-2.wav", sample_rate, x)
+print("Created clipped-ode-forwardeuler-{0} from {0}".format(file_name))
 # NFFT=1024
 # yf = rfft(uClipped)
 # xf = rfftfreq(N, 1 / N)
