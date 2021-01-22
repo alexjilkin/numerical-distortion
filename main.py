@@ -6,9 +6,9 @@ import sys
 from numericalMethods import odeBackwardEuler, odeForwardEuler
 from circuit import  circuit
 
-file_name = "samples/clean"
-width = 1
+file_name = sys.argv[1] if (len(sys.argv) > 1) else  "samples/clean"
 sample_rate, data = read("{0}.wav".format(file_name))
+width = 1
 
 # Length of input
 N = int(data.shape[0])
