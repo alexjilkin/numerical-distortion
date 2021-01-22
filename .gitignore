@@ -130,3 +130,5 @@ dmypy.json
 
 *.wav
 *.mp3
+.DS_Store
+*.aif
